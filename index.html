@@ -117,6 +117,7 @@
       border-bottom: 1px solid #E0E0E0;
       background-color: #f3f2ec;
       transition: box-shadow 0.3s;
+      position: relative;
     }
     #header.fixed-top {
       box-shadow: 0 2px 20px rgba(0,0,0,0.08);
@@ -170,19 +171,42 @@
     .menu-list .has-sub ul li a:hover { color: var(--accent-color); background: #f9f8f4; }
 
     /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; margin-left: auto; }
     .bar { width: 24px; height: 2px; background: var(--dark-color); transition: all 0.3s; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .main-menu { display: flex; align-items: center; justify-content: flex-end; }
     @media(max-width: 768px) {
+      .main-menu { justify-content: flex-end; }
       .hamburger { display: flex; }
-      .menu-list { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #f3f2ec; padding: 12px 24px 20px; border-bottom: 1px solid #E0E0E0; }
-      .menu-list.responsive { display: flex; }
-      .menu-list .has-sub ul { position: static; box-shadow: none; padding-left: 12px; }
-      .menu-list .has-sub:hover ul { display: none; }
+      /* Anchor dropdown to the full header, not the nav column */
+      #header { position: relative; }
+      #navbar { position: static; }
+      .menu-list {
+        max-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: #f3f2ec;
+        border-bottom: 0px solid #E0E0E0;
+        z-index: 200;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding: 0 24px;
+      }
+      .menu-list.responsive {
+        max-height: 600px;
+        padding: 12px 24px 20px;
+        border-bottom-width: 1px;
+        border-bottom: 1px solid #E0E0E0;
+      }
+      .menu-list > li { width: 100%; text-align: left; }
+      .menu-list > li > a { white-space: nowrap; }
+      .menu-list .has-sub ul { position: static; box-shadow: none; padding-left: 12px; display: none; }
       .menu-list .has-sub.open ul { display: block; }
-      #navbar { position: relative; }
     }
 
     /* ===== BILLBOARD ===== */
@@ -775,9 +799,20 @@
 
     /* Misc */
     .bookshelf { background: #fff; }
+
+    /* ===== FOOTER ===== */
+    footer#footer { padding: 80px 0 60px; border-bottom: 1px solid #E0E0E0; margin-top: 80px; }
+    #footer .footer-item { margin-right: 0; }
+    #footer .footer-item p { font-size: 0.88rem; line-height: 1.8; margin-top: 8px; }
+    #footer .footer-menu { margin-bottom: 30px; }
+    #footer .footer-menu ul { list-style: none; }
+    #footer .footer-menu ul li { margin-bottom: 8px; }
+    #footer .footer-menu ul a { color: var(--dark-color); font-size: 0.85rem; }
+    #footer .footer-menu ul a:hover { color: var(--accent-color); }
+    .footer-menu h5 { font-family: var(--heading-font); font-size: 1.05em; font-weight: 400; margin-bottom: 18px; margin-top: 0; }
+
     @media(max-width:768px) {
       .section-title { font-size: 2em; }
-      #footer .footer-item { margin-right: 0; }
       #subscribe .subscribe-content { margin-left: 0; margin-top: 30px; }
       .title-element .section-title.divider { font-size: 1.8em; }
     }
@@ -1127,8 +1162,8 @@
 
 <footer id="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-12">
         <div class="footer-item">
           <div class="company-brand">
             <div class="logo-text" style="font-size:1.5rem;margin-bottom:16px;">Able<span>Books</span></div>
@@ -1136,7 +1171,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-md-3 col-6">
         <div class="footer-menu">
           <h5>About Us</h5>
           <ul class="menu-list">
@@ -1148,7 +1183,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-md-3 col-6">
         <div class="footer-menu">
           <h5>Discover</h5>
           <ul class="menu-list">
@@ -1160,7 +1195,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-md-3 col-6">
         <div class="footer-menu">
           <h5>My Account</h5>
           <ul class="menu-list">
@@ -1171,7 +1206,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-md-3 col-6">
         <div class="footer-menu">
           <h5>Help</h5>
           <ul class="menu-list">
