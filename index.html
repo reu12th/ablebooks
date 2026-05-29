@@ -805,10 +805,18 @@
     #footer .footer-item { margin-right: 0; }
     #footer .footer-item p { font-size: 0.88rem; line-height: 1.8; margin-top: 8px; }
     #footer .footer-menu { margin-bottom: 30px; }
-    #footer .footer-menu ul { list-style: none; }
-    #footer .footer-menu ul li { margin-bottom: 8px; }
-    #footer .footer-menu ul a { color: var(--dark-color); font-size: 0.85rem; }
-    #footer .footer-menu ul a:hover { color: var(--accent-color); }
+    /* Override nav .menu-list flex styles inside footer */
+    #footer .footer-menu ul.menu-list {
+      display: block !important;
+      flex-direction: unset;
+      align-items: unset;
+      justify-content: unset;
+      gap: 0;
+      list-style: none;
+    }
+    #footer .footer-menu ul.menu-list li { width: auto; margin-bottom: 8px; }
+    #footer .footer-menu ul.menu-list a { color: var(--dark-color); font-size: 0.85rem; display: block; padding: 0; letter-spacing: 0; text-transform: none; font-weight: 400; white-space: normal; }
+    #footer .footer-menu ul.menu-list a:hover { color: var(--accent-color); background: none; }
     .footer-menu h5 { font-family: var(--heading-font); font-size: 1.05em; font-weight: 400; margin-bottom: 18px; margin-top: 0; }
 
     @media(max-width:768px) {
