@@ -2,12 +2,35 @@
 
 <html lang="en">
 <head>
-  <title>AbleBooks | Able Business School Lagos</title>
+  <title>AbleBooks — Premium Business Ebooks for African Entrepreneurs | Able Business School Lagos</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AbleBooks — Premium digital ebooks for African entrepreneurs and professionals. Instant download in PDF & EPUB.">
+  <meta name="description" content="AbleBooks by Able Business School Lagos offers 2,400+ premium business ebooks on entrepreneurship, finance, marketing and leadership. Instant PDF & EPUB download.">
   <meta name="author" content="Able Business School Lagos">
+
+  <!-- Favicon (inline SVG) -->
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%239A7B68'/><text y='.9em' font-size='72' font-family='Georgia,serif' fill='white' x='50%' dominant-baseline='top' text-anchor='middle'>A</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%239A7B68'/><text y='.9em' font-size='72' font-family='Georgia,serif' fill='white' x='50%' dominant-baseline='top' text-anchor='middle'>A</text></svg>">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AbleBooks — Premium Business Ebooks | Able Business School Lagos">
+  <meta property="og:description" content="Browse 2,400+ curated business ebooks on entrepreneurship, finance, marketing and leadership. Instant PDF & EPUB download.">
+  <meta property="og:url" content="https://ablebooks.vercel.app/">
+  <meta property="og:site_name" content="AbleBooks">
+
+  <!-- Twitter Card -->
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AbleBooks — Premium Business Ebooks">
+  <meta name="twitter:description" content="2,400+ curated business ebooks for African entrepreneurs. Instant download in PDF & EPUB.">
+
+  <!-- Canonical -->
+
+  <link rel="canonical" href="https://ablebooks.vercel.app/">
 
   <!-- Bootstrap 5 -->
 
@@ -171,11 +194,23 @@
     .menu-list .has-sub ul li a:hover { color: var(--accent-color); background: #f9f8f4; }
 
     /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; margin-left: auto; }
-    .bar { width: 24px; height: 2px; background: var(--dark-color); transition: all 0.3s; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 0; cursor: pointer; padding: 4px; margin-left: auto; width: 32px; height: 32px; }
+    .bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark-color);
+      border-radius: 2px;
+      margin: 3px 0;
+      transform-origin: center center;
+      transition: transform 0.3s ease, opacity 0.2s ease, background 0.2s;
+      will-change: transform;
+    }
+    /* bar spacing: 2px bar + 3px top margin + 3px bottom margin = 8px per bar
+       bars 1 and 3 need to travel to the center of bar 2: (3+2+3) = 8px */
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .main-menu { display: flex; align-items: center; justify-content: flex-end; }
     @media(max-width: 768px) {
       .main-menu { justify-content: flex-end; }
@@ -830,6 +865,29 @@
     }
   </style>
 
+  <!-- Structured Data: Bookstore -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "AbleBooks",
+    "description": "Premium digital ebooks for African entrepreneurs and professionals by Able Business School Lagos.",
+    "url": "https://ablebooks.vercel.app/",
+    "logo": "https://ablebooks.vercel.app/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "NG"
+    },
+    "sameAs": [
+      "https://www.facebook.com/ablebooks",
+      "https://www.twitter.com/ablebooks",
+      "https://www.instagram.com/ablebooks"
+    ]
+  }
+  </script>
+
 </head>
 <body>
 
@@ -925,7 +983,7 @@
       <div class="slider-item">
         <div class="banner-content">
           <p style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--light-text-color);margin-bottom:0;">Able Business School Lagos</p>
-          <h2 class="banner-title">Build Your Business Knowledge Base</h2>
+          <h1 class="banner-title">Build Your Business Knowledge Base</h1>
           <p>Instantly download premium ebooks on entrepreneurship, finance, African markets, and leadership — curated for the modern Nigerian professional.</p>
           <div class="btn-wrap">
             <a href="#featured-books" class="btn btn-outline-accent">Browse Collection <i class="fa fa-arrow-right"></i></a>
